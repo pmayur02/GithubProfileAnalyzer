@@ -66,11 +66,14 @@ module.exports.fetchGitHubProfile = async (username) => {
 
 
     } catch (error) {
+
         return {
             status: error.status || 500,
             message: "Something went wrong",
-            error: error
+            error: error.status ===404 ? "No Data Found.": error.message
         }
+        
+
     }
 }
 
