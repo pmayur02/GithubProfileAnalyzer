@@ -17,7 +17,7 @@ const Users = () => {
   const fetchAllUsers = async (pageNum = 1) => {
     try {
       setLoading(true);
-      const res = await axios.get(`${BackendURL}/apis/fetch-profiles`, {
+      const res = await axios.get(`${BackendURL}/fetch-profiles`, {
         params: { page: pageNum, pageSize }
       });
       const data = res.data;
@@ -47,7 +47,7 @@ const Users = () => {
     if (!search) return;
     try {
       setLoading(true);
-      const res = await axios.get(`${BackendURL}/apis/fetch-profile/${search}`);
+      const res = await axios.get(`${BackendURL}/fetch-profile/${search}`);
       if (!res.data?.data || res.data.data.length === 0) {
         setError("User not found.");
         setSearchedUser(null);
@@ -71,7 +71,7 @@ const Users = () => {
   const deleteUser = async (username) => {
     try {
       setLoading(true);
-      await axios.delete(`${BackendURL}/apis/delete-git-profile/${username}`);
+      await axios.delete(`${BackendURL}/delete-git-profile/${username}`);
       fetchAllUsers(page); // refresh current page
       setError(null);
     } catch (error) {

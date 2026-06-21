@@ -23,7 +23,7 @@ const Home = () => {
       setLoading(true);
       setError(null);
 
-      const fullUrl = `${BackendURL}/apis/fetch-git-profile/${username}`;
+      const fullUrl = `${BackendURL}/fetch-git-profile/${username}`;
       const res = await axios.post(fullUrl);
        debugger 
       if (!res.data?.data || res.data.data.length === 0) {

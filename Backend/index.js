@@ -23,7 +23,7 @@ app.use(cors({origin:allowedOrigins,credentials:true}));
 
 app.use(limiter);
 
-app.use("/apis",router);
+app.use("/",router);
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 

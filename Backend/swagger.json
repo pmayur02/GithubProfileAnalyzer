@@ -7,8 +7,12 @@
   },
   "servers": [
     {
-      "url": "http://localhost:8800/apis",
+      "url": "http://localhost:8800/",
       "description": "Local server"
+    },
+    {
+      "url": "https://githubprofileanalyzer-93qb.onrender.com/",
+      "description": "Dev server"
     }
   ],
   "paths": {
