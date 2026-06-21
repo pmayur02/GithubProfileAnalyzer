@@ -18,7 +18,7 @@ A full-stack application to fetch, analyze, and store GitHub user profiles with 
 
 ## 🎯 Project Overview
 
-GitHub Profile Analyzer is a web application that allows users to search for GitHub profiles, fetch detailed profile information, and store it in a database for further analysis. The application features a modern frontend and a robust backend API with rate limiting and CORS support.
+GitHub Profile Analyzer is a web application that allows users to search for GitHub profiles, fetch detailed profile information, and store it in a database for further analysis. The application f[...]
 
 ## ✨ Features
 
@@ -118,6 +118,57 @@ The server will run on `http://localhost:8800` by default.
 | `DATABASE_NAME` | Database name | - |
 | `GITHUB_TOKEN` | GitHub API personal access token | - |
 | `AllowedOrigins` | CORS allowed origins (comma-separated) | - |
+
+### MySQL Database Setup
+
+The application expects a MySQL database to store fetched GitHub profiles. Below are the SQL commands to create the database and the required table.
+
+1. Create the database:
+
+```sql
+CREATE DATABASE IF NOT EXISTS `github_analyzer`;
+USE `github_analyzer`;
+```
+
+2. Create the `github_profiles` table:
+
+```sql
+CREATE TABLE `github_profiles` (
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
+  `avatar_url` varchar(512) DEFAULT NULL,
+  `url` varchar(512) DEFAULT NULL,
+  `html_url` varchar(255) NOT NULL,
+  `followers_url` varchar(512) DEFAULT NULL,
+  `following_url` varchar(512) DEFAULT NULL,
+  `gists_url` varchar(512) DEFAULT NULL,
+  `starred_url` varchar(512) DEFAULT NULL,
+  `subscriptions_url` varchar(512) DEFAULT NULL,
+  `organizations_url` varchar(512) DEFAULT NULL,
+  `repos_url` varchar(512) DEFAULT NULL,
+  `events_url` varchar(512) DEFAULT NULL,
+  `received_events_url` varchar(512) DEFAULT NULL,
+  `type` varchar(50) DEFAULT NULL,
+  `user_view_type` varchar(50) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `company` varchar(255) DEFAULT NULL,
+  `blog` varchar(512) DEFAULT NULL,
+  `location` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `hireable` tinyint(1) DEFAULT NULL,
+  `bio` text,
+  `twitter_username` varchar(255) DEFAULT NULL,
+  `public_repos` int DEFAULT '0',
+  `public_gists` int DEFAULT '0',
+  `followers` int DEFAULT '0',
+  `following` int DEFAULT '0',
+  `account_created_at` datetime DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `is_active` tinyint(1) DEFAULT '1',
+  PRIMARY KEY (`user_id`)
+);
+```
 
 ### Rate Limiting
 
