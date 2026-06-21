@@ -1,0 +1,7 @@
+{
+    "saveProfile":"insert into github_profiles(username,avatar_url,url,html_url,followers_url,following_url,gists_url,starred_url,subscriptions_url,organizations_url,repos_url,events_url,received_events_url,type,user_view_type,name,company,blog,location,email,hireable,bio,twitter_username,public_repos,public_gists,followers,following,account_created_at) values(?)",
+    "fetchAllUsers":"select username,avatar_url,url,followers_url,following_url,gists_url,starred_url,subscriptions_url,organizations_url,repos_url,events_url,received_events_url,type,user_view_type,name,company,blog,location,email,hireable,bio,twitter_username,public_repos,public_gists,followers,following,account_created_at from github_profiles where is_active =1",
+    "fetchAUser":"select username,avatar_url,url,followers_url,following_url,gists_url,starred_url,subscriptions_url,organizations_url,repos_url,events_url,received_events_url,type,user_view_type,name,company,blog,location,email,hireable,bio,twitter_username,public_repos,public_gists,followers,following,account_created_at from github_profiles where username = ? and is_active =1",
+    "deleteUser":"update github_profiles set is_active = 0 where username = ?",
+    "fetchTotalUsers":"SELECT COUNT(*) as total FROM github_profiles"
+}

@@ -1,0 +1,245 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "GitHub Profile Analyzer API",
+    "version": "1.0.0",
+    "description": "Swagger documentation for GitHub Profile Analyzer backend endpoints."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8800/apis",
+      "description": "Local server"
+    }
+  ],
+  "paths": {
+    "/fetch-git-profile/{username}": {
+      "post": {
+        "summary": "Fetch GitHub profile and store it",
+        "description": "Fetches GitHub profile data for the specified username and stores it in the database.",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "GitHub username to fetch"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Profile fetched successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GitHubProfileResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid username or request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "GitHub profile not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/fetch-profiles": {
+      "get": {
+        "summary": "Fetch all stored GitHub profiles",
+        "description": "Returns all GitHub profiles stored in the database.",
+        "responses": {
+          "200": {
+            "description": "List of stored GitHub profiles",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GitHubProfileResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/fetch-profile/{username}": {
+      "get": {
+        "summary": "Fetch stored GitHub profile",
+        "description": "Returns the stored GitHub profile for the specified username.",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "GitHub username to retrieve"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Profile retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GitHubProfileResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Stored profile not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/delete-git-profile/{username}": {
+      "delete": {
+        "summary": "Delete stored GitHub profile",
+        "description": "Deletes the stored GitHub profile for the specified username.",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "GitHub username to delete"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Profile deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Profile not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "GitHubProfileResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 123456
+          },
+          "login": {
+            "type": "string",
+            "example": "octocat"
+          },
+          "name": {
+            "type": "string",
+            "example": "The Octocat"
+          },
+          "company": {
+            "type": "string",
+            "example": "GitHub"
+          },
+          "blog": {
+            "type": "string",
+            "example": "https://github.blog"
+          },
+          "location": {
+            "type": "string",
+            "example": "San Francisco"
+          },
+          "email": {
+            "type": ["string", "null"],
+            "example": "octocat@github.com"
+          },
+          "bio": {
+            "type": ["string", "null"],
+            "example": "GitHub mascot"
+          },
+          "public_repos": {
+            "type": "integer",
+            "example": 8
+          },
+          "followers": {
+            "type": "integer",
+            "example": 3938
+          },
+          "following": {
+            "type": "integer",
+            "example": 9
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2011-01-25T18:44:36Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-01-01T12:00:00Z"
+          }
+        }
+      },
+      "SuccessResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Profile deleted successfully"
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Invalid username provided"
+          }
+        }
+      }
+    }
+  }
+}
