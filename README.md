@@ -14,7 +14,6 @@ A full-stack application to fetch, analyze, and store GitHub user profiles with 
 - [API Documentation](#api-documentation)
 - [API Endpoints](#api-endpoints)
 - [Deployment](#deployment)
-- [Contributing](#contributing)
 
 ## 🎯 Project Overview
 
@@ -46,7 +45,7 @@ GitHub Profile Analyzer is a web application that allows users to search for Git
 - **API Documentation**: Swagger UI Express (v5.0.1)
 
 ### Frontend
-- HTML, CSS, and JavaScript
+- React.js and Tailwind CSS
 
 ## 📁 Project Structure
 
@@ -255,26 +254,5 @@ The API is fully documented using Swagger/OpenAPI 3.0. Interactive documentation
 
 The application is deployed and accessible at:
 - **Development Server**: https://githubprofileanalyzer-93qb.onrender.com/
+- **API Documentation Swagger **:https://githubprofileanalyzer-93qb.onrender.com/api/docs/#/
 
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-### Development Workflow
-1. Create a feature branch
-2. Make your changes
-3. Test thoroughly
-4. Submit a pull request
-
-## 📝 License
-
-This project is licensed under the ISC License - see the package.json file for details.
-
-## 📧 Support
-
-For issues, questions, or suggestions, please open an issue in the GitHub repository.
-
----
-
-**Last Updated**: 2026  
-**Version**: 1.0.0
