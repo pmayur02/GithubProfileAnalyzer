@@ -24,7 +24,12 @@ module.exports.fetchGitHubProfile = async (username) => {
         
         
         
-        const userProfile = await axios.get(`https://api.github.com/users/${username}`);
+        const userProfile = await axios.get(`https://api.github.com/users/${username}`,{
+            headers:{
+                Authorization: `token ${process.env.GITHUB_TOKEN}`,
+                "User-Agent": "github-profile-analyzer"
+            }
+        });
         if (!userProfile || Object.keys(userProfile?.data).length === 0) return {
             status: 404,
             message: "GitHub Profile Not Found."
